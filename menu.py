@@ -30,3 +30,7 @@ def menu():
             continue
         break
     return c
+
+#testing
+#title()
+#menu()
