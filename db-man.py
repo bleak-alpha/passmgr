@@ -9,25 +9,51 @@ def add():
     url = input("Enter The Login URL: ")
     uid = input('Enter Username: ')
     passwd = input('Enter Password: ')
-    c.execute('INSERT INTO PASSDB(acc, url, uid, passwd) VALUES(?, ?, ?)', (acc, url, uid, passwd))
+    c.execute('INSERT INTO PASSDB(acc, url, uid, passwd) VALUES(?, ?, ?, ?)', (acc, url, uid, passwd))
     conn.commit()
 
     c.close()
     conn.close() 
 
 
-'''def find():
+def find():
     conn = sqlite3.connect('pass.db')
     c = conn.cursor()
 
-    acc = input('Enter The Account Name: ')
-    c.execute('SELECT * FROM PASSDB WHERE acc is VALUES(?)', (acc))
+    while True:
+        try:
+            acc = input('Enter The Account Name: ')
+        except:
+            print('Account Not Found. Please Try Again.....')
+            continue
+        break
+    
+    c.execute('SELECT * FROM PASSDB WHERE acc=?', (acc,)) #find a way to display the records
 
     conn.commit()
     c.close()
-    conn.close()'''
+    conn.close()
 
 
-#test
+def delete():
+    conn = sqlite3.connect('pass.db')
+    c= conn.cursor
+
+    while True:
+        try:
+            acc = input('Enter Account Name:')
+        except:
+            print('Account Not Found. Please Try Again.....')
+        break
+
+    c.execute('DELETE FROM PASSDB WHERE acc is VALUES(?)', (acc)) #problem with deleting records
+
+    conn.commit()
+    c.close()
+    conn.close()
+
+
+#test site
 #add()
+#delete()
 #find()
