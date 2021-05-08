@@ -5,11 +5,12 @@ def showall():
     conn = sqlite3.connect('pass.db')
     c = conn.cursor()
  
-    c.execute("SELECT * FROM PASSDB") 
-
+    c.execute("SELECT * FROM PASSDB")
     rows = c.fetchall()
+
+    print("Account\t URL\t\t Login ID\t Password\t")
     for row in rows:
-        print(row)
+        print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
 
     conn.commit()
     c.close()
@@ -41,8 +42,10 @@ def find():
     c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,)) 
 
     rows = c.fetchall()
+    
+    print("Account\t URL\t\t Login ID\t Password\t")
     for row in rows:
-        print(row)
+        print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
 
     conn.commit()
     c.close()
@@ -58,23 +61,39 @@ def update():
     uid = input("Enter Login ID: ")
     passwd = input("Enter Login Password: ")
 
-    c.execute("UPDATE PASSDB SET url=?, uid=?, passwd=? WHERE acc=?,", (url, uid, passwd, acc,))
+    c.execute("UPDATE PASSDB SET url=?, uid=?, passwd=? WHERE acc=?", (url, uid, passwd, acc,))
+
+    c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,))
+
+    rows = c.fetchall()
+    
+    print("Printing The Updated Account....")
+    print("Account\t URL\t\t Login ID\t Password\t")
+    for row in rows:
+        print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
+
 
     conn.commit()
     c.close()
     conn.close()
 
+
 def delete():
     conn = sqlite3.connect('pass.db')
-    c= conn.cursor
+    c= conn.cursor()
 
     acc = input('Enter Account Name:')
 
-    c.execute('DELETE FROM PASSDB WHERE acc=?,', (acc,)) #problem with deleting records
+    c.execute('DELETE FROM PASSDB WHERE acc=?', (acc,)) #problem with deleting records
 
     print("Entered Account Deleted. Printing Table....")
 
-    showall()
+    c.execute("SELECT * FROM PASSDB")
+    rows = c.fetchall()
+
+    print("Account\t URL\t\t Login ID\t Password\t")
+    for row in rows:
+        print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
 
     conn.commit()
     c.close()
@@ -83,7 +102,7 @@ def delete():
 
 #test site
 #add()
-delete()
+#delete()
 #find()
 #showall()
 #update()
