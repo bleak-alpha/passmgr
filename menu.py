@@ -22,7 +22,7 @@ def menu():
     print('2. Find Existing Account.')
     print('3. Update Existing Account.')
     print('4. Deleting Existing Account.')
-    print('5. Show All Accounts. ')
+    print('5. Show All Accounts.')
     while True:
         try:
             c = int(input('Enter Your Choice......  '))

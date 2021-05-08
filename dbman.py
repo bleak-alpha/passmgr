@@ -1,4 +1,20 @@
 import sqlite3
+from sqlite3 import Error
+
+def showall():
+    conn = sqlite3.connect('pass.db')
+    c = conn.cursor()
+ 
+    c.execute("SELECT * FROM PASSDB") 
+
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
+
+    conn.commit()
+    c.close()
+    conn.close()
+
 
 def add():
     conn = sqlite3.connect('pass.db')
@@ -33,27 +49,32 @@ def find():
     conn.close()
 
 
+def update():
+    conn = sqlite3.connect('pass.db')
+    c = conn.cursor()
+
+    acc = input("Enter The Account Name: ")
+    url = input("Provide Login URL: ")
+    uid = input("Enter Login ID: ")
+    passwd = input("Enter Login Password: ")
+
+    c.execute("UPDATE PASSDB SET url=?, uid=?, passwd=? WHERE acc=?,", (url, uid, passwd, acc,))
+
+    conn.commit()
+    c.close()
+    conn.close()
+
 def delete():
     conn = sqlite3.connect('pass.db')
     c= conn.cursor
 
     acc = input('Enter Account Name:')
 
-    c.execute('DELETE FROM PASSDB WHERE acc=?,', (acc)) #problem with deleting records
+    c.execute('DELETE FROM PASSDB WHERE acc=?,', (acc,)) #problem with deleting records
 
-    conn.commit()
-    c.close()
-    conn.close()
+    print("Entered Account Deleted. Printing Table....")
 
-def showall():
-    conn = sqlite3.connect('pass.db')
-    c = conn.cursor()
- 
-    c.execute("SELECT * FROM PASSDB") 
-
-    rows = c.fetchall()
-    for row in rows:
-        print(row)
+    showall()
 
     conn.commit()
     c.close()
@@ -62,6 +83,7 @@ def showall():
 
 #test site
 #add()
-#delete()
+delete()
 #find()
 #showall()
+#update()
