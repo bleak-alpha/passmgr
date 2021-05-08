@@ -65,10 +65,7 @@ def password_gen():
     password = ""
     for x in infant_pass_list:
             password = password + x
-             
-    # print out password
-    print(password)
-    
+
     return password
 
 #testing

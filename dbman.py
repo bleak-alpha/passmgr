@@ -17,22 +17,6 @@ def showall():
     c.close()
     conn.close()
 
-def showrow(acc):
-    conn = sqlite3.connect('pass.db')
-    c = conn.cursor()
-
-    c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,))
-    rows = c.fetchall()
-
-    print("Account\t URL\t\t Login ID\t Password\t")
-    for row in rows:
-        print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
-    
-    conn.commit()
-    c.close()
-    conn.close()
-
-
 
 def add():
     conn = sqlite3.connect('pass.db')
