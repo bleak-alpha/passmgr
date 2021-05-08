@@ -20,15 +20,13 @@ def find():
     conn = sqlite3.connect('pass.db')
     c = conn.cursor()
 
-    while True:
-        try:
-            acc = input('Enter The Account Name: ')
-        except:
-            print('Account Not Found. Please Try Again.....')
-            continue
-        break
-    
-    c.execute('SELECT * FROM PASSDB WHERE acc=?', (acc,)) #find a way to display the records
+    acc = input('Enter The Account Name: ')
+ 
+    c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,)) 
+
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
 
     conn.commit()
     c.close()
@@ -39,14 +37,23 @@ def delete():
     conn = sqlite3.connect('pass.db')
     c= conn.cursor
 
-    while True:
-        try:
-            acc = input('Enter Account Name:')
-        except:
-            print('Account Not Found. Please Try Again.....')
-        break
+    acc = input('Enter Account Name:')
 
-    c.execute('DELETE FROM PASSDB WHERE acc is VALUES(?)', (acc)) #problem with deleting records
+    c.execute('DELETE FROM PASSDB WHERE acc=?,', (acc)) #problem with deleting records
+
+    conn.commit()
+    c.close()
+    conn.close()
+
+def showall():
+    conn = sqlite3.connect('pass.db')
+    c = conn.cursor()
+ 
+    c.execute("SELECT * FROM PASSDB") 
+
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
 
     conn.commit()
     c.close()
@@ -57,3 +64,4 @@ def delete():
 #add()
 #delete()
 #find()
+#showall()
