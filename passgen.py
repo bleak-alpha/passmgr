@@ -4,8 +4,8 @@ import array
 def passprompt():
     while True:
         c = input("Do You Want to Generate a Password(Y/N)? ")
-        if c=='Y' or c=="y": ch = False
-        if c=='N' or c=='n': ch = True
+        if c=='Y' or c=="y": ch = True
+        if c=='N' or c=='n': ch = False
         break
     return ch
 
@@ -68,5 +68,8 @@ def password_gen():
              
     # print out password
     print(password)
+    
+    return password
 
-password_gen()
+#testing
+#password_gen()

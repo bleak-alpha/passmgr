@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+import passgen as pass
 
 def showall():
     conn = sqlite3.connect('pass.db')
@@ -41,7 +42,12 @@ def add():
     acc = input('Account Name: ')
     url = input("Enter The Login URL: ")
     uid = input('Enter Username: ')
-    passwd = input("Enter The Password: ")
+    
+    while True:
+        ch=pass.passprompt()
+        if ch is True: passwd = pass.password_gen()
+        if ch is False: passwd = input("Enter Password: ")
+        break
         
     c.execute('INSERT INTO PASSDB(acc, url, uid, passwd) VALUES(?, ?, ?, ?)', (acc, url, uid, passwd))
     
