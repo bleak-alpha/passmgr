@@ -1,6 +1,14 @@
 import random as ran
 import array
 
+def passprompt():
+    while True:
+        c = input("Do You Want to Generate a Password(Y/N)? ")
+        if c=='Y' or c=="y": ch = False
+        if c=='N' or c=='n': ch = True
+        break
+    return ch
+
 
 def password_gen():
     # maximum length of password needed

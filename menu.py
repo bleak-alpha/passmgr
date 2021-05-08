@@ -16,21 +16,15 @@ def title():
                                                                                                                                                                                                                ''')
 
 
-#Main Menu
+
 def menu():
     print("1. Add New Account.")
     print('2. Find Existing Account.')
     print('3. Update Existing Account.')
     print('4. Deleting Existing Account.')
     print('5. Show All Accounts.')
-    while True:
-        try:
-            c = int(input('Enter Your Choice......  '))
-        except:
-            print("Please Enter a numeric value")
-            continue
-        break
-    return c
+    print("Q. Quit The Program.")
+
 
 #testing
 #title()

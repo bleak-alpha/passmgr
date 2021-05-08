@@ -16,6 +16,22 @@ def showall():
     c.close()
     conn.close()
 
+def showrow(acc):
+    conn = sqlite3.connect('pass.db')
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,))
+    rows = c.fetchall()
+
+    print("Account\t URL\t\t Login ID\t Password\t")
+    for row in rows:
+        print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
+    
+    conn.commit()
+    c.close()
+    conn.close()
+
+
 
 def add():
     conn = sqlite3.connect('pass.db')
@@ -25,10 +41,19 @@ def add():
     acc = input('Account Name: ')
     url = input("Enter The Login URL: ")
     uid = input('Enter Username: ')
-    passwd = input('Enter Password: ')
+    passwd = input("Enter The Password: ")
+        
     c.execute('INSERT INTO PASSDB(acc, url, uid, passwd) VALUES(?, ?, ?, ?)', (acc, url, uid, passwd))
-    conn.commit()
+    
+    print("Printing The Inserted Value....")
+    c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,))
+    rows = c.fetchall()
 
+    print("Account\t URL\t\t Login ID\t Password\t")
+    for row in rows:
+        print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
+
+    conn.commit()
     c.close()
     conn.close() 
 
@@ -63,15 +88,14 @@ def update():
 
     c.execute("UPDATE PASSDB SET url=?, uid=?, passwd=? WHERE acc=?", (url, uid, passwd, acc,))
 
-    c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,))
-
-    rows = c.fetchall()
     
-    print("Printing The Updated Account....")
+    print("Printing The Updated Account....")   
+    c.execute("SELECT * FROM PASSDB WHERE acc=?", (acc,))
+    rows = c.fetchall()
+
     print("Account\t URL\t\t Login ID\t Password\t")
     for row in rows:
         print(row[0],"\t", row[1],"\t", row[2],"\t\t", row[3],)
-
 
     conn.commit()
     c.close()
@@ -87,7 +111,6 @@ def delete():
     c.execute('DELETE FROM PASSDB WHERE acc=?', (acc,)) #problem with deleting records
 
     print("Entered Account Deleted. Printing Table....")
-
     c.execute("SELECT * FROM PASSDB")
     rows = c.fetchall()
 
