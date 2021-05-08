@@ -1,6 +1,6 @@
+import passgen
 import sqlite3
 from sqlite3 import Error
-import passgen as pass
 
 def showall():
     conn = sqlite3.connect('pass.db')
@@ -44,8 +44,8 @@ def add():
     uid = input('Enter Username: ')
     
     while True:
-        ch=pass.passprompt()
-        if ch is True: passwd = pass.password_gen()
+        ch=passgen.passprompt()
+        if ch is True: passwd = passgen.password_gen()
         if ch is False: passwd = input("Enter Password: ")
         break
         
