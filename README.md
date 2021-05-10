@@ -20,15 +20,15 @@ As the title suggests its a local database based pasword manager with a cli fron
  
  #### 3. Updating Specific Account Details.
  This option uses 'UPDATE' SQL query to update the requested account details<br/>
- ![Details](https://github.com/bleak-alpha/passmgr/blob/main/screens/op3.JPG)<br/><br/>
+ ![Update Details](https://github.com/bleak-alpha/passmgr/blob/main/screens/op3.JPG)<br/><br/>
  
  #### 4. Deleting Specific Account Details
  This option uses 'DELETE' SQL query to delete the requested account details<br/>
- ![Details](https://github.com/bleak-alpha/passmgr/blob/main/screens/op4.JPG)<br/><br/>
+ ![Delete Details](https://github.com/bleak-alpha/passmgr/blob/main/screens/op4.JPG)<br/><br/>
  
  ### 5. Display All Entered Account details
  This option uses 'SELECT' SQL query to delete the requested account details<br/>
- ![ds](https://github.com/bleak-alpha/passmgr/blob/main/screens/op5.JPG)<br/><br/>
+ ![Table Details](https://github.com/bleak-alpha/passmgr/blob/main/screens/op5.JPG)<br/><br/>
 
 ### How to run this?
 1. Clone this repository onto your machine: ``git clone https://github.com/bleak-alpha/passmgr.git``
