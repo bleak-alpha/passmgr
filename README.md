@@ -32,5 +32,5 @@ As the title suggests its a local database based pasword manager with a cli fron
 
 ### How to run this?
 1. Clone this repository onto your machine: ``git clone https://github.com/bleak-alpha/passmgr.git``
-2. Navigate into the repository: ``cd tkgui-assignment``
+2. Navigate into the repository: ``cd passmgr``
 3. Execute Main file: ``python3 main.py``
